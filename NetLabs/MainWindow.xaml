@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="Hotel Manager" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Background="Gray" Grid.RowSpan="5">
+                <StackPanel>
+                    <Button Content="Furniture" Command="{Binding SetFurniturePage}"></Button>
+                    <Button Content="Roow" Command="{Binding SetRoomPage}"></Button>
+                    <Button Content="Client" Command="{Binding SetClientPage}"></Button>
+                    <Button Content="Order" Command="{Binding SetOrderPage}"></Button>
+                    <Button Content="Service" Command="{Binding SetServicePage}"></Button>
+                </StackPanel>
+            </DockPanel>
+            <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPage}"></ContentControl>
+        </Grid>
     </Grid>
 </Window>

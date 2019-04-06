@@ -1,5 +1,4 @@
-﻿using NetLabs.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NetLabs
+namespace NetLabs.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для RoomPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RoomPage : UserControl
     {
-        public MainWindow()
+        public RoomPage()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }
