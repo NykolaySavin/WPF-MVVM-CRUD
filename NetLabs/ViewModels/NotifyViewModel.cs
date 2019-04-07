@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace NetLabs.ViewModels
 {
-    public class NotifyViewModel : INotifyPropertyChanged
+    public abstract class NotifyViewModel : INotifyPropertyChanged
     {
+        public abstract void Update();
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(string propertyName)

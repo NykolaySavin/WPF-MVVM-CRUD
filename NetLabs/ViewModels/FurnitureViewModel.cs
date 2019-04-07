@@ -13,27 +13,26 @@ namespace NetLabs.ViewModels
 {
     public class FurnitureViewModel : DataViewModel<Furniture>
     {
-        public FurnitureViewModel(Store store) 
+        private GenericService<Room> roomService;
+        public FurnitureViewModel(GenericService<Furniture> furnitureService, GenericService<Room> roomService) 
         {
-            service = new GenericService<Furniture>(store);
+            service = furnitureService;
+            this.roomService = roomService;
             WorkingItem = new Furniture();
         }
-       
-        public ObservableCollection<Furniture> Items { get { return service.Get().ToObservableCollection(); } }
-
-        public override void Add()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
+        public ObservableCollection<Room> Rooms { get { return roomService.Get().ToObservableCollection(); } }
         public override void Edit()
         {
-            throw new NotImplementedException();
+            SelectedItem.Name = WorkingItem.Name;
+            SelectedItem.Price = WorkingItem.Price;
+            SelectedItem.Room = WorkingItem.Room;
+            service.Update(SelectedItem);
+            NotifyPropertyChanged("Items");
+        }
+
+        public override void Update()
+        {
+            NotifyPropertyChanged("Rooms");
         }
     }
 }

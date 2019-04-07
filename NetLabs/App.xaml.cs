@@ -22,14 +22,18 @@ namespace NetLabs
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Store store = new Store();
+            ModelStore.Store store = new ModelStore.Store();
             IUnityContainer container = new UnityContainer();
-
-            container.RegisterType< FurnitureViewModel>(new InjectionConstructor(store));
-            container.RegisterType< OrderViewModel>(new InjectionConstructor(store));
-            container.RegisterType<ServiceViewModel>(new InjectionConstructor(store));
-            container.RegisterType<RoomViewModel>(new InjectionConstructor(store));
-            container.RegisterType<ClientViewModel>(new InjectionConstructor(store));
+            GenericService<Order> orderService = new GenericService<Order>(store);
+            GenericService<Furniture> furnitureService = new GenericService<Furniture>(store);
+            GenericService<Client> clientService = new GenericService<Client>(store);
+            GenericService<Service> serviceService = new GenericService<Service>(store);
+            GenericService<Room> roomService = new GenericService<Room>(store);
+            container.RegisterType< FurnitureViewModel>(new InjectionConstructor(new object[] {furnitureService,roomService }));
+            container.RegisterType< OrderViewModel>(new InjectionConstructor(new object[] {orderService,roomService,clientService,serviceService }));
+            container.RegisterType<ServiceViewModel>(new InjectionConstructor(new object[] { serviceService }));
+            container.RegisterType<RoomViewModel>(new InjectionConstructor(new object[] { roomService }));
+            container.RegisterType<ClientViewModel>(new InjectionConstructor(new object[] { clientService }));
             container.RegisterType<RoomPage>(new InjectionProperty("ViewModel", container.Resolve<RoomViewModel>()));
             container.RegisterType<OrderPage>(new InjectionProperty("ViewModel", container.Resolve<OrderViewModel>()));
             container.RegisterType<ClientPage>(new InjectionProperty("ViewModel", container.Resolve<ClientViewModel>()));

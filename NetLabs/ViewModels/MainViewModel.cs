@@ -27,11 +27,11 @@ namespace NetLabs.ViewModels
             this.roomPage = roomPage;
             this.clientPage =clientPage;
             this.servicePage = servicePage;
-            SetFurniturePage = new DelegateCommand((o) => { control = furniturePage; form = furniturePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
-            SetOrderPage = new DelegateCommand((o) => { control = orderPage; form = orderPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
-            SetRoomPage = new DelegateCommand((o) => { control = roomPage; form = roomPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
-            SetServicePage = new DelegateCommand((o) => { control = servicePage; form = servicePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
-            SetClientPage = new DelegateCommand((o) => { control = clientPage; form = clientPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
+            SetFurniturePage = new DelegateCommand((o) => { control = furniturePage; form = furniturePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); furniturePage.ViewModel.Update(); });
+            SetOrderPage = new DelegateCommand((o) => { control = orderPage; form = orderPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); orderPage.ViewModel.Update(); });
+            SetRoomPage = new DelegateCommand((o) => { control = roomPage; form = roomPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); roomPage.ViewModel.Update(); });
+            SetServicePage = new DelegateCommand((o) => { control = servicePage; form = servicePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); servicePage.ViewModel.Update(); });
+            SetClientPage = new DelegateCommand((o) => { control = clientPage; form = clientPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); clientPage.ViewModel.Update(); });
         }
         public ICommand SetFurniturePage
         {
@@ -62,6 +62,11 @@ namespace NetLabs.ViewModels
         public FormViewModel Form
         {
             get { return form; }
+        }
+
+        public override void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

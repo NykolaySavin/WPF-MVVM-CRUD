@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,37 +12,34 @@ namespace HotelClasses
     {
         public ICollection<Service> Services { get; set; }
         private double fixedPrice=0;
-        public double Sum { get { return Room.Price + Services.Sum(item => item.Price)+fixedPrice; }  }
+        [NotMapped]
+        public double Sum { get { if (Room != null && Services != null) return Room.Price + Services.Sum(item => item.Price) + fixedPrice; return 0; }  }
         public Order(Room room,Client client)
         {
             Room = room;
+            Room.State = RoomState.Occupied;
             Client = client;
             StartDate = DateTime.Now;
             Services = new List<Service>();
         }
-        public void CrashFurniture(Furniture f)
-        {
-            if (Room.Furniture.Contains(f))
-            {
-                fixedPrice += f.Price;
-                Room.Furniture.Remove(f);
-            }
-        }
-        public void AddService(Service service)
-        {
-            Services.Add(service);
-        }
+        [Column(Order = 1)]
+        public  Client Client { get; set; }
+        [Column(Order = 2)]
+        public  Room Room { get; set; }
+        public DateTime StartDate { get; }
+        public DateTime? EndDate { get; set; }
         public void FinishOrder()
         {
             EndDate = DateTime.Now;
+            Room.State = RoomState.Free;
         }
-        public  Client Client { get; set; }
-        public  Room Room { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public void UseService(Service service)
+        {
+            Services.Add(service);
+        }
         public Order()
         {
-
+            Services = new List<Service>();
         }
     }
 }

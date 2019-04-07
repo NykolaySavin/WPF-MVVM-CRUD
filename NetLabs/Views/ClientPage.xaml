@@ -7,6 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center">
+            <DataGrid  IsReadOnly="True"  Width="200" Height="200" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Phone" Binding="{Binding Phone}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Text="Name:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Name}"></TextBox>
+            <TextBlock Text="Surname:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Surname}"></TextBox>
+            <TextBlock Text="Email:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Email}"></TextBox>
+            <TextBlock Text="Phone:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Phone}"></TextBox>
+
+        </StackPanel>
     </Grid>
 </UserControl>

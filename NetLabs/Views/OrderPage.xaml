@@ -7,6 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel HorizontalAlignment="Center">
+            <DataGrid  IsReadOnly="True"  Width="200" Height="200" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Client" Binding="{Binding Client}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Room" Binding="{Binding Room}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sum" Binding="{Binding Sum}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Text="Room:"></TextBlock>
+            <ComboBox Width="200" SelectedItem="{Binding WorkingItem.Room}" ItemsSource="{Binding Rooms}"></ComboBox>
+            <TextBlock Text="Client:"></TextBlock>
+            <ComboBox Width="200" SelectedItem="{Binding WorkingItem.Client}" ItemsSource="{Binding Clients}"></ComboBox>
+            <DockPanel Margin="10">
+                <TextBlock Text="Service:"></TextBlock>
+                <ComboBox   Width="200" SelectedItem="{Binding Service}" ItemsSource="{Binding Services}"></ComboBox>
+                <Button Width="100"  Content="Use Service" Command="{Binding UseServiceCommand}"></Button>
+            </DockPanel>
+            <Button Margin="10"  Width="100" Content="Use Service" Command="{Binding FinishOrderCommand}"></Button>
+        </StackPanel>
     </Grid>
 </UserControl>

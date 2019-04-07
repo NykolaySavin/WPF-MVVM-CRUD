@@ -7,6 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel HorizontalAlignment="Center">
+            <DataGrid  IsReadOnly="True"  Width="200" Height="200" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Number" Binding="{Binding Number}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="State" Binding="{Binding State}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Text="Number:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Number}"></TextBox>
+        </StackPanel>
     </Grid>
 </UserControl>

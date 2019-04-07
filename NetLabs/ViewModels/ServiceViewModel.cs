@@ -10,26 +10,22 @@ namespace NetLabs.ViewModels
 {
     public class ServiceViewModel : DataViewModel<Service>
     {
-        public ServiceViewModel(Store store)
+        public ServiceViewModel(GenericService<Service> serviceService)
         {
-            service = new GenericService<Service>(store);
+            service = serviceService;
             WorkingItem = new Service();
 
         }
-
-        public override void Add()
+        public override void Update()
         {
-            throw new NotImplementedException();
-        }
 
-        public override void Delete()
-        {
-            throw new NotImplementedException();
         }
-
         public override void Edit()
         {
-            throw new NotImplementedException();
+            SelectedItem.Name = WorkingItem.Name;
+            SelectedItem.Price = WorkingItem.Price;
+            service.Update(SelectedItem);
+            NotifyPropertyChanged("Items");
         }
     }
 }

@@ -11,26 +11,24 @@ namespace NetLabs.ViewModels
 {
     public class ClientViewModel : DataViewModel<Client>
     {
-        public ClientViewModel(Store store)
+        public override void Update()
         {
-            service = new GenericService<Client>(store);
+            
+        }
+        public ClientViewModel(GenericService<Client> clientService)
+        {
+            service = clientService;
             WorkingItem = new Client();
 
         }
-
-        public override void Add()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Edit()
         {
-            throw new NotImplementedException();
+            SelectedItem.Name = WorkingItem.Name;
+            SelectedItem.Email = WorkingItem.Email;
+            SelectedItem.Phone = WorkingItem.Phone;
+            SelectedItem.Surname = WorkingItem.Surname;
+            service.Update(SelectedItem);
+            NotifyPropertyChanged("Items");
         }
     }
 }

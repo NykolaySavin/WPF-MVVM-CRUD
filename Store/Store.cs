@@ -10,7 +10,7 @@ namespace ModelStore
 {
     public class Store :DbContext
     {
-        public Store() : base("MSSQLHotelConnection")
+        public Store() : base("MSSQLHotelConnection2")
         {
         }
         public DbSet<Order> Orders { get; set; }

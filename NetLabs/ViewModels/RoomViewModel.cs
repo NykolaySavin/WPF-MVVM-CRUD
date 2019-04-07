@@ -10,26 +10,21 @@ namespace NetLabs.ViewModels
 {
     public class RoomViewModel : DataViewModel<Room>
     {
-        public RoomViewModel(Store store)
+        public RoomViewModel(GenericService<Room> roomService)
         {
-            service = new GenericService<Room>(store);
+            service = roomService;
             WorkingItem = new Room();
 
         }
-
-        public override void Add()
+        public override void Update()
         {
-            throw new NotImplementedException();
-        }
 
-        public override void Delete()
-        {
-            throw new NotImplementedException();
         }
-
         public override void Edit()
         {
-            throw new NotImplementedException();
+            SelectedItem.Number = WorkingItem.Number;
+            service.Update(SelectedItem);
+            NotifyPropertyChanged("Items");
         }
     }
 }

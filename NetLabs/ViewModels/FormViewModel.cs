@@ -3,6 +3,7 @@ using ModelStore;
 using NetLabs.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,18 @@ namespace NetLabs.ViewModels
         public DataViewModel()
         {
         }
+        public override void Add()
+        {
+            service.Create(WorkingItem);
+            NotifyPropertyChanged("Items");
+        }
+
+        public override void Delete()
+        {
+            service.Remove(SelectedItem);
+            NotifyPropertyChanged("Items");
+        }
+        public ObservableCollection<T> Items { get { return service.Get().ToObservableCollection(); } }
         public T WorkingItem { get { return workingItem; } set { workingItem = value; NotifyPropertyChanged("WorkingItem"); } }
         public T SelectedItem { get { return selectedItem; } set { selectedItem = value; NotifyPropertyChanged("SelectedItem"); } }
     }
@@ -25,9 +38,9 @@ namespace NetLabs.ViewModels
     {
         public FormViewModel()
         {
-            addCommand = new DelegateCommand((o)=>Add());
-            editCommand = new DelegateCommand((o) => Edit());
-            deleteCommand = new DelegateCommand((o) => Delete());
+            addCommand = new DelegateCommand((o) => { Add(); Update(); });
+            editCommand = new DelegateCommand((o) => { Edit(); Update(); });
+            deleteCommand = new DelegateCommand((o) => { Delete();Update(); });
         }
         private ICommand addCommand;
         private ICommand editCommand;

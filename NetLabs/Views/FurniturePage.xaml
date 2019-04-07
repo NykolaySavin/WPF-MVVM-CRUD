@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <DataGrid  IsReadOnly="True"  Width="200" Height="200" ItemsSource="{Binding Items}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Room" Binding="{Binding Room}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             
+            <TextBlock Text="Name:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Name}"></TextBox>
+            <TextBlock Text="Price:"></TextBlock>
+            <TextBox Width="200" Text="{Binding WorkingItem.Price}"></TextBox>
+            <TextBlock Text="Room:"></TextBlock>
+            <ComboBox Width="200" SelectedItem="{Binding WorkingItem.Room}" ItemsSource="{Binding Rooms}"></ComboBox>
+
+        </StackPanel>
     </Grid>
 </UserControl>
