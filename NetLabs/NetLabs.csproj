@@ -75,6 +75,7 @@
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />
     <Compile Include="ViewModels\FurnitureViewModel.cs" />
+    <Compile Include="ViewModels\IForm.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />

@@ -7,16 +7,20 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NetLabs.ViewModels
 {
-    public class FurnitureViewModel : FormViewModel<Furniture>
+    public class FurnitureViewModel : DataViewModel<Furniture>
     {
         public FurnitureViewModel(Store store) 
         {
             service = new GenericService<Furniture>(store);
             WorkingItem = new Furniture();
         }
+       
+        public ObservableCollection<Furniture> Items { get { return service.Get().ToObservableCollection(); } }
+
         public override void Add()
         {
             throw new NotImplementedException();
@@ -31,6 +35,5 @@ namespace NetLabs.ViewModels
         {
             throw new NotImplementedException();
         }
-        public ObservableCollection<Furniture> Items { get { return service.Get().ToObservableCollection(); } }
     }
 }

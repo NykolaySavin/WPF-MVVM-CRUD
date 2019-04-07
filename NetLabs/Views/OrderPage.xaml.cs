@@ -28,9 +28,10 @@ namespace NetLabs.Views
             InitializeComponent();
         }
         [Dependency]
-        public FormViewModel<Order> ViewModel
+        public OrderViewModel ViewModel
         {
             set { this.DataContext = value; }
+            get { return this.DataContext as OrderViewModel; }
         }
     }
 }

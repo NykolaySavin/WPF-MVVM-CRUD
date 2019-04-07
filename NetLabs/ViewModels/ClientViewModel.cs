@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NetLabs.ViewModels
 {
-    class ClientViewModel : FormViewModel<Client>
+    public class ClientViewModel : DataViewModel<Client>
     {
         public ClientViewModel(Store store)
         {
@@ -16,6 +17,7 @@ namespace NetLabs.ViewModels
             WorkingItem = new Client();
 
         }
+
         public override void Add()
         {
             throw new NotImplementedException();

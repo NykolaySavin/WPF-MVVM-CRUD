@@ -22,7 +22,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <DockPanel Background="Gray" Grid.RowSpan="5">
+            <StackPanel Background="Gray" Grid.RowSpan="5">
                 <StackPanel>
                     <Button Content="Furniture" Command="{Binding SetFurniturePage}"></Button>
                     <Button Content="Roow" Command="{Binding SetRoomPage}"></Button>
@@ -30,7 +30,12 @@
                     <Button Content="Order" Command="{Binding SetOrderPage}"></Button>
                     <Button Content="Service" Command="{Binding SetServicePage}"></Button>
                 </StackPanel>
-            </DockPanel>
+                <StackPanel Margin="0,100,0,0">
+                    <Button Content="Edit" Command="{Binding Form.EditCommand}"></Button>
+                    <Button Content="Delete" Command="{Binding Form.DeleteCommand}"></Button>
+                    <Button Content="Add" Command="{Binding Form.AddCommand}"></Button>
+                </StackPanel>
+            </StackPanel>
             <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPage}"></ContentControl>
         </Grid>
     </Grid>

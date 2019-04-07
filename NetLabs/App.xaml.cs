@@ -25,16 +25,16 @@ namespace NetLabs
             Store store = new Store();
             IUnityContainer container = new UnityContainer();
 
-            container.RegisterType<FormViewModel<Furniture>, FurnitureViewModel>(new InjectionConstructor(store));
-            container.RegisterType<FormViewModel<Order>, OrderViewModel>(new InjectionConstructor(store));
-            container.RegisterType<FormViewModel<Service>, ServiceViewModel>(new InjectionConstructor(store));
-            container.RegisterType<FormViewModel<Room>, RoomViewModel>(new InjectionConstructor(store));
-            container.RegisterType<FormViewModel<Client>, ClientViewModel>(new InjectionConstructor(store));
-            container.RegisterType<RoomPage>(new InjectionProperty("ViewModel", container.Resolve<FormViewModel<Room>>()));
-            container.RegisterType<OrderPage>(new InjectionProperty("ViewModel", container.Resolve<FormViewModel<Order>>()));
-            container.RegisterType<ClientPage>(new InjectionProperty("ViewModel", container.Resolve<FormViewModel<Client>>()));
-            container.RegisterType<FurniturePage>(new InjectionProperty("ViewModel", container.Resolve<FormViewModel<Furniture>>()));
-            container.RegisterType<ServicePage>(new InjectionProperty("ViewModel", container.Resolve<FormViewModel<Service>>()));
+            container.RegisterType< FurnitureViewModel>(new InjectionConstructor(store));
+            container.RegisterType< OrderViewModel>(new InjectionConstructor(store));
+            container.RegisterType<ServiceViewModel>(new InjectionConstructor(store));
+            container.RegisterType<RoomViewModel>(new InjectionConstructor(store));
+            container.RegisterType<ClientViewModel>(new InjectionConstructor(store));
+            container.RegisterType<RoomPage>(new InjectionProperty("ViewModel", container.Resolve<RoomViewModel>()));
+            container.RegisterType<OrderPage>(new InjectionProperty("ViewModel", container.Resolve<OrderViewModel>()));
+            container.RegisterType<ClientPage>(new InjectionProperty("ViewModel", container.Resolve<ClientViewModel>()));
+            container.RegisterType<FurniturePage>(new InjectionProperty("ViewModel", container.Resolve<FurnitureViewModel>()));
+            container.RegisterType<ServicePage>(new InjectionProperty("ViewModel", container.Resolve<ServiceViewModel>()));
             container.RegisterType<MainViewModel>(new InjectionConstructor(new object[] {container.Resolve<FurniturePage>(), container.Resolve<OrderPage>(), container.Resolve<ClientPage>(), container.Resolve<ServicePage>(), container.Resolve<RoomPage>() }));
             container.RegisterType<MainWindow>(new InjectionProperty("ViewModel",container.Resolve<MainViewModel>()));
             MainWindow window = container.Resolve<MainWindow>();

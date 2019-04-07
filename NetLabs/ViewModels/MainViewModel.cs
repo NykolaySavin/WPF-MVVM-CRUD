@@ -27,11 +27,11 @@ namespace NetLabs.ViewModels
             this.roomPage = roomPage;
             this.clientPage =clientPage;
             this.servicePage = servicePage;
-            SetFurniturePage = new DelegateCommand((o) => { control = furniturePage; NotifyPropertyChanged("CurrentPage"); });
-            SetOrderPage = new DelegateCommand((o) => { control = orderPage; NotifyPropertyChanged("CurrentPage"); });
-            SetRoomPage = new DelegateCommand((o) => { control = roomPage; NotifyPropertyChanged("CurrentPage"); });
-            SetServicePage = new DelegateCommand((o) => { control = servicePage; NotifyPropertyChanged("CurrentPage"); });
-            SetClientPage = new DelegateCommand((o) => { control = clientPage; NotifyPropertyChanged("CurrentPage"); });
+            SetFurniturePage = new DelegateCommand((o) => { control = furniturePage; form = furniturePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
+            SetOrderPage = new DelegateCommand((o) => { control = orderPage; form = orderPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
+            SetRoomPage = new DelegateCommand((o) => { control = roomPage; form = roomPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
+            SetServicePage = new DelegateCommand((o) => { control = servicePage; form = servicePage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
+            SetClientPage = new DelegateCommand((o) => { control = clientPage; form = clientPage.ViewModel; NotifyPropertyChanged("CurrentPage"); NotifyPropertyChanged("Form"); });
         }
         public ICommand SetFurniturePage
         {
@@ -57,6 +57,11 @@ namespace NetLabs.ViewModels
         public UserControl CurrentPage
         {
             get { return control; }
+        }
+        private FormViewModel form;
+        public FormViewModel Form
+        {
+            get { return form; }
         }
     }
 }

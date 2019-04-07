@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetLabs.ViewModels
 {
-    class RoomViewModel : FormViewModel<Room>
+    public class RoomViewModel : DataViewModel<Room>
     {
         public RoomViewModel(Store store)
         {
@@ -16,6 +16,7 @@ namespace NetLabs.ViewModels
             WorkingItem = new Room();
 
         }
+
         public override void Add()
         {
             throw new NotImplementedException();

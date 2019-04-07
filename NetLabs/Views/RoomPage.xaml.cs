@@ -28,9 +28,11 @@ namespace NetLabs.Views
             InitializeComponent();
         }
         [Dependency]
-        public FormViewModel<Room> ViewModel
+        public RoomViewModel ViewModel
         {
             set { this.DataContext = value; }
+            get { return this.DataContext as RoomViewModel; }
         }
+
     }
 }
