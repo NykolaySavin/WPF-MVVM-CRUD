@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotelClasses;
+using NetLabs.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Unity;
 
 namespace NetLabs.Views
 {
@@ -23,6 +26,11 @@ namespace NetLabs.Views
         public ServicePage()
         {
             InitializeComponent();
+        }
+        [Dependency]
+        public FormViewModel<Service> ViewModel
+        {
+            set { this.DataContext = value; }
         }
     }
 }

@@ -35,5 +35,9 @@ namespace HotelClasses
             Email = email;
             Phone = phone;
         }
+        public Client()
+        {
+
+        }
     }
 }

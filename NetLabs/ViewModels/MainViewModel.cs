@@ -1,9 +1,11 @@
-﻿using NetLabs.Helpers;
+﻿using ModelStore;
+using NetLabs.Helpers;
 using NetLabs.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -11,27 +13,20 @@ using System.Windows.Input;
 
 namespace NetLabs.ViewModels
 {
-    public class MainViewModel :  INotifyPropertyChanged
+    public class MainViewModel :NotifyViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
         private FurniturePage furniturePage;
         private OrderPage orderPage;
         private ClientPage clientPage;
         private ServicePage servicePage;
         private RoomPage roomPage;
-        public MainViewModel()
+        public MainViewModel(FurniturePage furniturePage,OrderPage orderPage,ClientPage clientPage,ServicePage servicePage,RoomPage roomPage)
         {
-            furniturePage = new FurniturePage();
-            orderPage = new OrderPage();
-            roomPage = new RoomPage();
-            clientPage = new ClientPage();
-            servicePage = new ServicePage();
+            this.furniturePage = furniturePage;
+            this.orderPage =orderPage;
+            this.roomPage = roomPage;
+            this.clientPage =clientPage;
+            this.servicePage = servicePage;
             SetFurniturePage = new DelegateCommand((o) => { control = furniturePage; NotifyPropertyChanged("CurrentPage"); });
             SetOrderPage = new DelegateCommand((o) => { control = orderPage; NotifyPropertyChanged("CurrentPage"); });
             SetRoomPage = new DelegateCommand((o) => { control = roomPage; NotifyPropertyChanged("CurrentPage"); });
